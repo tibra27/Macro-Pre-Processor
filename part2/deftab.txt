@@ -1,0 +1,26 @@
+!!!M_START ..function.. (&a1&=1,&a2&=1,&a3&=1,&a4&=1,&a5&=1,&a6&=1,&a7&=1)
+		WHILE..(&a1& L &a2&)
+			mov ecx,&a5&
+			INCR &a1&
+		ENDW..
+!!!M_FINISH
+!!!M_START ..condition.. (&a1&=1,&a2&=1,&a3&=1,&a4&=1,&a5&=1,&a6&=1,&a7&=1)
+			IF..(&a2& L &a4&)
+				iteration:
+					mov ebx,[n]
+					cmp ebx,1
+					je end
+					add eax,ecx
+					mov ecx,eax
+					push eax
+					push int
+					call &a6&
+					jmp iteration
+			ELSE..
+				end:
+					mov esp,ebp
+	                pop ebp
+					ret
+			END_IFF
+!!!M_FINISH
+!!!M_STARTS ..macro1.. (&a1&=1,&a2&=1,&a3&=1,&a4&=1,&a5&=1,&a6&=1,&a7&=1) int: db '%d',&a1&,&a2& !!!M_FINISHS
